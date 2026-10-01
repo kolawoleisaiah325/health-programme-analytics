@@ -33,6 +33,25 @@ replaces only tables in the `portfolio_health` schema. `sql/analysis.sql`
 contains example decision queries. GitHub Actions tests the loader and SQL
 views against a temporary PostgreSQL service.
 
+## Explore the dashboard
+
+![Dashboard overview using synthetic programme data](docs/screenshots/dashboard-overview.jpg)
+
+The dashboard has a light workspace, a navy filter panel, four metric cards,
+and separate performance, follow-up, quality and forecast views. Use the area
+and period filters to narrow the operational figures; Reset filters restores
+the full view. The follow-up category control narrows the action list further.
+Downloads retain an explicit synthetic-data label. The forecast is labelled
+programme-wide and does not change with the operational filters.
+
+The UI refresh was verified in a live browser, including all four views,
+empty-filter recovery and CSV downloads. Automated interaction tests also
+check area/date filtering, reset behaviour and missing-versus-zero actions.
+
+For the next portfolio phase, see the [real-data plan](docs/real_data_plan.md).
+It proposes a separate Nigeria annual immunisation coverage page using public
+WHO/UNICEF estimates; those estimates are not monthly facility delivery records.
+
 ## What each part does
 
 | Component | Main files | Decision protected |

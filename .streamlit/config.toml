@@ -1,0 +1,20 @@
+[client]
+toolbarMode = "viewer"
+
+[theme]
+base = "light"
+primaryColor = "#087F8C"
+backgroundColor = "#F4F7FA"
+secondaryBackgroundColor = "#FFFFFF"
+textColor = "#172B40"
+font = "sans-serif"
+borderColor = "#DFE7EE"
+dataframeHeaderBackgroundColor = "#EDF3F7"
+showWidgetBorder = true
+
+[theme.sidebar]
+primaryColor = "#55C8C0"
+backgroundColor = "#112B3C"
+secondaryBackgroundColor = "#1D3C50"
+textColor = "#EFF6FA"
+borderColor = "#365468"

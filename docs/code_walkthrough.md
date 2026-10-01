@@ -93,12 +93,34 @@ commodity demand.
 ## 5. Turn data into a management dashboard
 
 `dashboard/app.py` uses `st.cache_data` to avoid rereading files on every
-interaction. The area and month controls filter the fact table. The four
+interaction. Input file modification times form the cache key, so a pipeline
+refresh reloads the data. Area and month controls filter the fact table. The four
 cards answer different questions: Was a report submitted? Was it accepted?
 How many doses were recorded? How did accepted months compare with their
 targets? The denominator for target attainment includes only accepted
 months. The follow-up table shows missing, invalid, and below-threshold
 facility-months with different actions.
+
+The dashboard keeps presentation separate from the source records:
+
+- `.streamlit/config.toml` supplies the light theme and navy sidebar;
+  `dashboard/style.css` controls card spacing, typography and responsive sizing.
+- `st.session_state` remembers the selected areas and period. The reset
+  callback selects all areas and clears the slider's saved state, restoring
+  its default range before Streamlit redraws the page.
+- `monthly_totals()` groups facility records into monthly chart values.
+  `sum(min_count=1)` requires at least one known value; a completely unknown
+  month's total stays blank rather than becoming zero.
+- `chart_style()` applies consistent colours, axes and hover behaviour.
+  Amber markers identify partial monthly totals in the performance chart.
+- `export_csv()` adds a synthetic-data label to each exported row. The
+  action-list download follows both the sidebar and category filters.
+- The forecast shows its programme-wide scope explicitly. Its historical
+  line has gaps where reporting was incomplete; its model is not refitted
+  when a user changes the dashboard filters.
+
+The dashboard tests change area and period, clear the selection, reset it,
+and check that missing reports and valid zero reports produce different actions.
 
 `powerbi/` contains equivalent Power Query imports and DAX measures.
 `CALCULATE` changes the filter context for a measure; `DIVIDE` handles a
