@@ -25,7 +25,7 @@ with its synthetic-data caveat.
 The target measure deliberately sums targets only where reports were accepted.
 For an unreported facility-month, the delivered value is unknown, so it is not
 valid to interpret a missing row as zero performance. The Streamlit dashboard
-implements and tests these same metric definitions.
+uses these same definitions; its page and key displayed metrics are tested.
 
 Power Query functions and DAX measures follow Microsoft's documentation:
 

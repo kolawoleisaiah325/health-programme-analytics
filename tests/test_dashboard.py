@@ -12,6 +12,8 @@ class DashboardTest(unittest.TestCase):
         app = AppTest.from_file(str(app_file), default_timeout=60).run()
         self.assertEqual(len(app.exception), 0)
         self.assertEqual(app.title[0].value, "Health programme performance")
+        self.assertEqual(app.metric[0].value, "99.1%")
+        self.assertEqual(app.metric[1].value, "213 / 216")
 
 
 if __name__ == "__main__":
