@@ -1,0 +1,7 @@
+facility_id,facility_name,area,facility_type
+F001,Demo Facility 01,Demo Area A,Clinic
+F002,Demo Facility 02,Demo Area A,Health centre
+F003,Demo Facility 03,Demo Area A,Clinic
+F004,Demo Facility 04,Demo Area B,Health centre
+F005,Demo Facility 05,Demo Area B,Clinic
+F006,Demo Facility 06,Demo Area B,Health centre

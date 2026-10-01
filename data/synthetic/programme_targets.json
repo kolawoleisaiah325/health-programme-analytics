@@ -1,0 +1,1082 @@
+[
+  {
+    "facility_id": "F001",
+    "period": "2023-01",
+    "target_doses": 112
+  },
+  {
+    "facility_id": "F001",
+    "period": "2023-02",
+    "target_doses": 112
+  },
+  {
+    "facility_id": "F001",
+    "period": "2023-03",
+    "target_doses": 112
+  },
+  {
+    "facility_id": "F001",
+    "period": "2023-04",
+    "target_doses": 112
+  },
+  {
+    "facility_id": "F001",
+    "period": "2023-05",
+    "target_doses": 112
+  },
+  {
+    "facility_id": "F001",
+    "period": "2023-06",
+    "target_doses": 112
+  },
+  {
+    "facility_id": "F001",
+    "period": "2023-07",
+    "target_doses": 112
+  },
+  {
+    "facility_id": "F001",
+    "period": "2023-08",
+    "target_doses": 112
+  },
+  {
+    "facility_id": "F001",
+    "period": "2023-09",
+    "target_doses": 112
+  },
+  {
+    "facility_id": "F001",
+    "period": "2023-10",
+    "target_doses": 112
+  },
+  {
+    "facility_id": "F001",
+    "period": "2023-11",
+    "target_doses": 112
+  },
+  {
+    "facility_id": "F001",
+    "period": "2023-12",
+    "target_doses": 112
+  },
+  {
+    "facility_id": "F001",
+    "period": "2024-01",
+    "target_doses": 112
+  },
+  {
+    "facility_id": "F001",
+    "period": "2024-02",
+    "target_doses": 112
+  },
+  {
+    "facility_id": "F001",
+    "period": "2024-03",
+    "target_doses": 112
+  },
+  {
+    "facility_id": "F001",
+    "period": "2024-04",
+    "target_doses": 112
+  },
+  {
+    "facility_id": "F001",
+    "period": "2024-05",
+    "target_doses": 112
+  },
+  {
+    "facility_id": "F001",
+    "period": "2024-06",
+    "target_doses": 112
+  },
+  {
+    "facility_id": "F001",
+    "period": "2024-07",
+    "target_doses": 112
+  },
+  {
+    "facility_id": "F001",
+    "period": "2024-08",
+    "target_doses": 112
+  },
+  {
+    "facility_id": "F001",
+    "period": "2024-09",
+    "target_doses": 112
+  },
+  {
+    "facility_id": "F001",
+    "period": "2024-10",
+    "target_doses": 112
+  },
+  {
+    "facility_id": "F001",
+    "period": "2024-11",
+    "target_doses": 112
+  },
+  {
+    "facility_id": "F001",
+    "period": "2024-12",
+    "target_doses": 112
+  },
+  {
+    "facility_id": "F001",
+    "period": "2025-01",
+    "target_doses": 112
+  },
+  {
+    "facility_id": "F001",
+    "period": "2025-02",
+    "target_doses": 112
+  },
+  {
+    "facility_id": "F001",
+    "period": "2025-03",
+    "target_doses": 112
+  },
+  {
+    "facility_id": "F001",
+    "period": "2025-04",
+    "target_doses": 112
+  },
+  {
+    "facility_id": "F001",
+    "period": "2025-05",
+    "target_doses": 112
+  },
+  {
+    "facility_id": "F001",
+    "period": "2025-06",
+    "target_doses": 112
+  },
+  {
+    "facility_id": "F001",
+    "period": "2025-07",
+    "target_doses": 112
+  },
+  {
+    "facility_id": "F001",
+    "period": "2025-08",
+    "target_doses": 112
+  },
+  {
+    "facility_id": "F001",
+    "period": "2025-09",
+    "target_doses": 112
+  },
+  {
+    "facility_id": "F001",
+    "period": "2025-10",
+    "target_doses": 112
+  },
+  {
+    "facility_id": "F001",
+    "period": "2025-11",
+    "target_doses": 112
+  },
+  {
+    "facility_id": "F001",
+    "period": "2025-12",
+    "target_doses": 112
+  },
+  {
+    "facility_id": "F002",
+    "period": "2023-01",
+    "target_doses": 124
+  },
+  {
+    "facility_id": "F002",
+    "period": "2023-02",
+    "target_doses": 124
+  },
+  {
+    "facility_id": "F002",
+    "period": "2023-03",
+    "target_doses": 124
+  },
+  {
+    "facility_id": "F002",
+    "period": "2023-04",
+    "target_doses": 124
+  },
+  {
+    "facility_id": "F002",
+    "period": "2023-05",
+    "target_doses": 124
+  },
+  {
+    "facility_id": "F002",
+    "period": "2023-06",
+    "target_doses": 124
+  },
+  {
+    "facility_id": "F002",
+    "period": "2023-07",
+    "target_doses": 124
+  },
+  {
+    "facility_id": "F002",
+    "period": "2023-08",
+    "target_doses": 124
+  },
+  {
+    "facility_id": "F002",
+    "period": "2023-09",
+    "target_doses": 124
+  },
+  {
+    "facility_id": "F002",
+    "period": "2023-10",
+    "target_doses": 124
+  },
+  {
+    "facility_id": "F002",
+    "period": "2023-11",
+    "target_doses": 124
+  },
+  {
+    "facility_id": "F002",
+    "period": "2023-12",
+    "target_doses": 124
+  },
+  {
+    "facility_id": "F002",
+    "period": "2024-01",
+    "target_doses": 124
+  },
+  {
+    "facility_id": "F002",
+    "period": "2024-02",
+    "target_doses": 124
+  },
+  {
+    "facility_id": "F002",
+    "period": "2024-03",
+    "target_doses": 124
+  },
+  {
+    "facility_id": "F002",
+    "period": "2024-04",
+    "target_doses": 124
+  },
+  {
+    "facility_id": "F002",
+    "period": "2024-05",
+    "target_doses": 124
+  },
+  {
+    "facility_id": "F002",
+    "period": "2024-06",
+    "target_doses": 124
+  },
+  {
+    "facility_id": "F002",
+    "period": "2024-07",
+    "target_doses": 124
+  },
+  {
+    "facility_id": "F002",
+    "period": "2024-08",
+    "target_doses": 124
+  },
+  {
+    "facility_id": "F002",
+    "period": "2024-09",
+    "target_doses": 124
+  },
+  {
+    "facility_id": "F002",
+    "period": "2024-10",
+    "target_doses": 124
+  },
+  {
+    "facility_id": "F002",
+    "period": "2024-11",
+    "target_doses": 124
+  },
+  {
+    "facility_id": "F002",
+    "period": "2024-12",
+    "target_doses": 124
+  },
+  {
+    "facility_id": "F002",
+    "period": "2025-01",
+    "target_doses": 124
+  },
+  {
+    "facility_id": "F002",
+    "period": "2025-02",
+    "target_doses": 124
+  },
+  {
+    "facility_id": "F002",
+    "period": "2025-03",
+    "target_doses": 124
+  },
+  {
+    "facility_id": "F002",
+    "period": "2025-04",
+    "target_doses": 124
+  },
+  {
+    "facility_id": "F002",
+    "period": "2025-05",
+    "target_doses": 124
+  },
+  {
+    "facility_id": "F002",
+    "period": "2025-06",
+    "target_doses": 124
+  },
+  {
+    "facility_id": "F002",
+    "period": "2025-07",
+    "target_doses": 124
+  },
+  {
+    "facility_id": "F002",
+    "period": "2025-08",
+    "target_doses": 124
+  },
+  {
+    "facility_id": "F002",
+    "period": "2025-09",
+    "target_doses": 124
+  },
+  {
+    "facility_id": "F002",
+    "period": "2025-10",
+    "target_doses": 124
+  },
+  {
+    "facility_id": "F002",
+    "period": "2025-11",
+    "target_doses": 124
+  },
+  {
+    "facility_id": "F002",
+    "period": "2025-12",
+    "target_doses": 124
+  },
+  {
+    "facility_id": "F003",
+    "period": "2023-01",
+    "target_doses": 136
+  },
+  {
+    "facility_id": "F003",
+    "period": "2023-02",
+    "target_doses": 136
+  },
+  {
+    "facility_id": "F003",
+    "period": "2023-03",
+    "target_doses": 136
+  },
+  {
+    "facility_id": "F003",
+    "period": "2023-04",
+    "target_doses": 136
+  },
+  {
+    "facility_id": "F003",
+    "period": "2023-05",
+    "target_doses": 136
+  },
+  {
+    "facility_id": "F003",
+    "period": "2023-06",
+    "target_doses": 136
+  },
+  {
+    "facility_id": "F003",
+    "period": "2023-07",
+    "target_doses": 136
+  },
+  {
+    "facility_id": "F003",
+    "period": "2023-08",
+    "target_doses": 136
+  },
+  {
+    "facility_id": "F003",
+    "period": "2023-09",
+    "target_doses": 136
+  },
+  {
+    "facility_id": "F003",
+    "period": "2023-10",
+    "target_doses": 136
+  },
+  {
+    "facility_id": "F003",
+    "period": "2023-11",
+    "target_doses": 136
+  },
+  {
+    "facility_id": "F003",
+    "period": "2023-12",
+    "target_doses": 136
+  },
+  {
+    "facility_id": "F003",
+    "period": "2024-01",
+    "target_doses": 136
+  },
+  {
+    "facility_id": "F003",
+    "period": "2024-02",
+    "target_doses": 136
+  },
+  {
+    "facility_id": "F003",
+    "period": "2024-03",
+    "target_doses": 136
+  },
+  {
+    "facility_id": "F003",
+    "period": "2024-04",
+    "target_doses": 136
+  },
+  {
+    "facility_id": "F003",
+    "period": "2024-05",
+    "target_doses": 136
+  },
+  {
+    "facility_id": "F003",
+    "period": "2024-06",
+    "target_doses": 136
+  },
+  {
+    "facility_id": "F003",
+    "period": "2024-07",
+    "target_doses": 136
+  },
+  {
+    "facility_id": "F003",
+    "period": "2024-08",
+    "target_doses": 136
+  },
+  {
+    "facility_id": "F003",
+    "period": "2024-09",
+    "target_doses": 136
+  },
+  {
+    "facility_id": "F003",
+    "period": "2024-10",
+    "target_doses": 136
+  },
+  {
+    "facility_id": "F003",
+    "period": "2024-11",
+    "target_doses": 136
+  },
+  {
+    "facility_id": "F003",
+    "period": "2024-12",
+    "target_doses": 136
+  },
+  {
+    "facility_id": "F003",
+    "period": "2025-01",
+    "target_doses": 136
+  },
+  {
+    "facility_id": "F003",
+    "period": "2025-02",
+    "target_doses": 136
+  },
+  {
+    "facility_id": "F003",
+    "period": "2025-03",
+    "target_doses": 136
+  },
+  {
+    "facility_id": "F003",
+    "period": "2025-04",
+    "target_doses": 136
+  },
+  {
+    "facility_id": "F003",
+    "period": "2025-05",
+    "target_doses": 136
+  },
+  {
+    "facility_id": "F003",
+    "period": "2025-06",
+    "target_doses": 136
+  },
+  {
+    "facility_id": "F003",
+    "period": "2025-07",
+    "target_doses": 136
+  },
+  {
+    "facility_id": "F003",
+    "period": "2025-08",
+    "target_doses": 136
+  },
+  {
+    "facility_id": "F003",
+    "period": "2025-09",
+    "target_doses": 136
+  },
+  {
+    "facility_id": "F003",
+    "period": "2025-10",
+    "target_doses": 136
+  },
+  {
+    "facility_id": "F003",
+    "period": "2025-11",
+    "target_doses": 136
+  },
+  {
+    "facility_id": "F003",
+    "period": "2025-12",
+    "target_doses": 136
+  },
+  {
+    "facility_id": "F004",
+    "period": "2023-01",
+    "target_doses": 148
+  },
+  {
+    "facility_id": "F004",
+    "period": "2023-02",
+    "target_doses": 148
+  },
+  {
+    "facility_id": "F004",
+    "period": "2023-03",
+    "target_doses": 148
+  },
+  {
+    "facility_id": "F004",
+    "period": "2023-04",
+    "target_doses": 148
+  },
+  {
+    "facility_id": "F004",
+    "period": "2023-05",
+    "target_doses": 148
+  },
+  {
+    "facility_id": "F004",
+    "period": "2023-06",
+    "target_doses": 148
+  },
+  {
+    "facility_id": "F004",
+    "period": "2023-07",
+    "target_doses": 148
+  },
+  {
+    "facility_id": "F004",
+    "period": "2023-08",
+    "target_doses": 148
+  },
+  {
+    "facility_id": "F004",
+    "period": "2023-09",
+    "target_doses": 148
+  },
+  {
+    "facility_id": "F004",
+    "period": "2023-10",
+    "target_doses": 148
+  },
+  {
+    "facility_id": "F004",
+    "period": "2023-11",
+    "target_doses": 148
+  },
+  {
+    "facility_id": "F004",
+    "period": "2023-12",
+    "target_doses": 148
+  },
+  {
+    "facility_id": "F004",
+    "period": "2024-01",
+    "target_doses": 148
+  },
+  {
+    "facility_id": "F004",
+    "period": "2024-02",
+    "target_doses": 148
+  },
+  {
+    "facility_id": "F004",
+    "period": "2024-03",
+    "target_doses": 148
+  },
+  {
+    "facility_id": "F004",
+    "period": "2024-04",
+    "target_doses": 148
+  },
+  {
+    "facility_id": "F004",
+    "period": "2024-05",
+    "target_doses": 148
+  },
+  {
+    "facility_id": "F004",
+    "period": "2024-06",
+    "target_doses": 148
+  },
+  {
+    "facility_id": "F004",
+    "period": "2024-07",
+    "target_doses": 148
+  },
+  {
+    "facility_id": "F004",
+    "period": "2024-08",
+    "target_doses": 148
+  },
+  {
+    "facility_id": "F004",
+    "period": "2024-09",
+    "target_doses": 148
+  },
+  {
+    "facility_id": "F004",
+    "period": "2024-10",
+    "target_doses": 148
+  },
+  {
+    "facility_id": "F004",
+    "period": "2024-11",
+    "target_doses": 148
+  },
+  {
+    "facility_id": "F004",
+    "period": "2024-12",
+    "target_doses": 148
+  },
+  {
+    "facility_id": "F004",
+    "period": "2025-01",
+    "target_doses": 148
+  },
+  {
+    "facility_id": "F004",
+    "period": "2025-02",
+    "target_doses": 148
+  },
+  {
+    "facility_id": "F004",
+    "period": "2025-03",
+    "target_doses": 148
+  },
+  {
+    "facility_id": "F004",
+    "period": "2025-04",
+    "target_doses": 148
+  },
+  {
+    "facility_id": "F004",
+    "period": "2025-05",
+    "target_doses": 148
+  },
+  {
+    "facility_id": "F004",
+    "period": "2025-06",
+    "target_doses": 148
+  },
+  {
+    "facility_id": "F004",
+    "period": "2025-07",
+    "target_doses": 148
+  },
+  {
+    "facility_id": "F004",
+    "period": "2025-08",
+    "target_doses": 148
+  },
+  {
+    "facility_id": "F004",
+    "period": "2025-09",
+    "target_doses": 148
+  },
+  {
+    "facility_id": "F004",
+    "period": "2025-10",
+    "target_doses": 148
+  },
+  {
+    "facility_id": "F004",
+    "period": "2025-11",
+    "target_doses": 148
+  },
+  {
+    "facility_id": "F004",
+    "period": "2025-12",
+    "target_doses": 148
+  },
+  {
+    "facility_id": "F005",
+    "period": "2023-01",
+    "target_doses": 160
+  },
+  {
+    "facility_id": "F005",
+    "period": "2023-02",
+    "target_doses": 160
+  },
+  {
+    "facility_id": "F005",
+    "period": "2023-03",
+    "target_doses": 160
+  },
+  {
+    "facility_id": "F005",
+    "period": "2023-04",
+    "target_doses": 160
+  },
+  {
+    "facility_id": "F005",
+    "period": "2023-05",
+    "target_doses": 160
+  },
+  {
+    "facility_id": "F005",
+    "period": "2023-06",
+    "target_doses": 160
+  },
+  {
+    "facility_id": "F005",
+    "period": "2023-07",
+    "target_doses": 160
+  },
+  {
+    "facility_id": "F005",
+    "period": "2023-08",
+    "target_doses": 160
+  },
+  {
+    "facility_id": "F005",
+    "period": "2023-09",
+    "target_doses": 160
+  },
+  {
+    "facility_id": "F005",
+    "period": "2023-10",
+    "target_doses": 160
+  },
+  {
+    "facility_id": "F005",
+    "period": "2023-11",
+    "target_doses": 160
+  },
+  {
+    "facility_id": "F005",
+    "period": "2023-12",
+    "target_doses": 160
+  },
+  {
+    "facility_id": "F005",
+    "period": "2024-01",
+    "target_doses": 160
+  },
+  {
+    "facility_id": "F005",
+    "period": "2024-02",
+    "target_doses": 160
+  },
+  {
+    "facility_id": "F005",
+    "period": "2024-03",
+    "target_doses": 160
+  },
+  {
+    "facility_id": "F005",
+    "period": "2024-04",
+    "target_doses": 160
+  },
+  {
+    "facility_id": "F005",
+    "period": "2024-05",
+    "target_doses": 160
+  },
+  {
+    "facility_id": "F005",
+    "period": "2024-06",
+    "target_doses": 160
+  },
+  {
+    "facility_id": "F005",
+    "period": "2024-07",
+    "target_doses": 160
+  },
+  {
+    "facility_id": "F005",
+    "period": "2024-08",
+    "target_doses": 160
+  },
+  {
+    "facility_id": "F005",
+    "period": "2024-09",
+    "target_doses": 160
+  },
+  {
+    "facility_id": "F005",
+    "period": "2024-10",
+    "target_doses": 160
+  },
+  {
+    "facility_id": "F005",
+    "period": "2024-11",
+    "target_doses": 160
+  },
+  {
+    "facility_id": "F005",
+    "period": "2024-12",
+    "target_doses": 160
+  },
+  {
+    "facility_id": "F005",
+    "period": "2025-01",
+    "target_doses": 160
+  },
+  {
+    "facility_id": "F005",
+    "period": "2025-02",
+    "target_doses": 160
+  },
+  {
+    "facility_id": "F005",
+    "period": "2025-03",
+    "target_doses": 160
+  },
+  {
+    "facility_id": "F005",
+    "period": "2025-04",
+    "target_doses": 160
+  },
+  {
+    "facility_id": "F005",
+    "period": "2025-05",
+    "target_doses": 160
+  },
+  {
+    "facility_id": "F005",
+    "period": "2025-06",
+    "target_doses": 160
+  },
+  {
+    "facility_id": "F005",
+    "period": "2025-07",
+    "target_doses": 160
+  },
+  {
+    "facility_id": "F005",
+    "period": "2025-08",
+    "target_doses": 160
+  },
+  {
+    "facility_id": "F005",
+    "period": "2025-09",
+    "target_doses": 160
+  },
+  {
+    "facility_id": "F005",
+    "period": "2025-10",
+    "target_doses": 160
+  },
+  {
+    "facility_id": "F005",
+    "period": "2025-11",
+    "target_doses": 160
+  },
+  {
+    "facility_id": "F005",
+    "period": "2025-12",
+    "target_doses": 160
+  },
+  {
+    "facility_id": "F006",
+    "period": "2023-01",
+    "target_doses": 172
+  },
+  {
+    "facility_id": "F006",
+    "period": "2023-02",
+    "target_doses": 172
+  },
+  {
+    "facility_id": "F006",
+    "period": "2023-03",
+    "target_doses": 172
+  },
+  {
+    "facility_id": "F006",
+    "period": "2023-04",
+    "target_doses": 172
+  },
+  {
+    "facility_id": "F006",
+    "period": "2023-05",
+    "target_doses": 172
+  },
+  {
+    "facility_id": "F006",
+    "period": "2023-06",
+    "target_doses": 172
+  },
+  {
+    "facility_id": "F006",
+    "period": "2023-07",
+    "target_doses": 172
+  },
+  {
+    "facility_id": "F006",
+    "period": "2023-08",
+    "target_doses": 172
+  },
+  {
+    "facility_id": "F006",
+    "period": "2023-09",
+    "target_doses": 172
+  },
+  {
+    "facility_id": "F006",
+    "period": "2023-10",
+    "target_doses": 172
+  },
+  {
+    "facility_id": "F006",
+    "period": "2023-11",
+    "target_doses": 172
+  },
+  {
+    "facility_id": "F006",
+    "period": "2023-12",
+    "target_doses": 172
+  },
+  {
+    "facility_id": "F006",
+    "period": "2024-01",
+    "target_doses": 172
+  },
+  {
+    "facility_id": "F006",
+    "period": "2024-02",
+    "target_doses": 172
+  },
+  {
+    "facility_id": "F006",
+    "period": "2024-03",
+    "target_doses": 172
+  },
+  {
+    "facility_id": "F006",
+    "period": "2024-04",
+    "target_doses": 172
+  },
+  {
+    "facility_id": "F006",
+    "period": "2024-05",
+    "target_doses": 172
+  },
+  {
+    "facility_id": "F006",
+    "period": "2024-06",
+    "target_doses": 172
+  },
+  {
+    "facility_id": "F006",
+    "period": "2024-07",
+    "target_doses": 172
+  },
+  {
+    "facility_id": "F006",
+    "period": "2024-08",
+    "target_doses": 172
+  },
+  {
+    "facility_id": "F006",
+    "period": "2024-09",
+    "target_doses": 172
+  },
+  {
+    "facility_id": "F006",
+    "period": "2024-10",
+    "target_doses": 172
+  },
+  {
+    "facility_id": "F006",
+    "period": "2024-11",
+    "target_doses": 172
+  },
+  {
+    "facility_id": "F006",
+    "period": "2024-12",
+    "target_doses": 172
+  },
+  {
+    "facility_id": "F006",
+    "period": "2025-01",
+    "target_doses": 172
+  },
+  {
+    "facility_id": "F006",
+    "period": "2025-02",
+    "target_doses": 172
+  },
+  {
+    "facility_id": "F006",
+    "period": "2025-03",
+    "target_doses": 172
+  },
+  {
+    "facility_id": "F006",
+    "period": "2025-04",
+    "target_doses": 172
+  },
+  {
+    "facility_id": "F006",
+    "period": "2025-05",
+    "target_doses": 172
+  },
+  {
+    "facility_id": "F006",
+    "period": "2025-06",
+    "target_doses": 172
+  },
+  {
+    "facility_id": "F006",
+    "period": "2025-07",
+    "target_doses": 172
+  },
+  {
+    "facility_id": "F006",
+    "period": "2025-08",
+    "target_doses": 172
+  },
+  {
+    "facility_id": "F006",
+    "period": "2025-09",
+    "target_doses": 172
+  },
+  {
+    "facility_id": "F006",
+    "period": "2025-10",
+    "target_doses": 172
+  },
+  {
+    "facility_id": "F006",
+    "period": "2025-11",
+    "target_doses": 172
+  },
+  {
+    "facility_id": "F006",
+    "period": "2025-12",
+    "target_doses": 172
+  }
+]
