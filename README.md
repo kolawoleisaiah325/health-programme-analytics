@@ -25,8 +25,8 @@ Demand forecasting with time-based evaluation, followed by an evidence-grounded 
 
 ## Current status
 
-The first reproducible, synthetic input data is available. Ingestion, validation,
-warehouse modelling, dashboarding, forecasting, and AI reporting are planned.
+Synthetic inputs and an auditable validation pipeline are available. Warehouse
+modelling, dashboarding, forecasting, and AI reporting are planned.
 
 ## Run the first milestone
 
@@ -35,6 +35,8 @@ From the project root, using the project's virtual environment on Windows:
 ```powershell
 .\.venv\Scripts\python.exe .\src\check_setup.py
 .\.venv\Scripts\python.exe .\src\generate_demo_data.py
+.\.venv\Scripts\python.exe .\src\validate_data.py
+.\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
 
 The generator uses Python's standard library and a fixed random seed, so it does
@@ -51,6 +53,25 @@ The periods span January 2023 through December 2025. The intentionally inserted
 quality cases are two missing facility-month reports, one submitted zero-dose
 report, one negative dose count, one later resubmission, and one unknown facility
 code. These are test cases, not observations about any real health programme.
+
+## Validation outputs
+
+`data/processed/facility_month_status.csv` has one row for every expected
+facility-month. Its `reporting_status` is `accepted`, `missing`, or `invalid`.
+`accepted_doses` is blank for missing and invalid reports, but can be `0` for
+a valid submission. `submission_count` counts submissions, including rejected
+ones, so data collection and data validity remain separate questions.
+
+`data/processed/report_review.csv` keeps every submitted row with a decision:
+`accepted`, `superseded`, or `rejected`, plus a reason code. Among valid
+resubmissions for the same facility-month, the latest `reported_at` wins;
+ties use `report_id` for a stable result. Invalid rows never become selected.
+The three-source pipeline fails if a facility ID or target definition is
+duplicated, since that would make joins ambiguous.
+
+`data/processed/quality_summary.json` totals expected and submitted
+facility-months, decision statuses, and issue codes. All outputs are derived
+from fictional data and can be regenerated with the commands above.
 
 ## Planned tools
 

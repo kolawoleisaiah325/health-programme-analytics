@@ -1,0 +1,20 @@
+{
+  "data_label": "synthetic demonstration data",
+  "expected_facility_months": 216,
+  "submitted_facility_months": 214,
+  "reporting_status_counts": {
+    "accepted": 213,
+    "invalid": 1,
+    "missing": 2
+  },
+  "submission_review_counts": {
+    "accepted": 213,
+    "rejected": 2,
+    "superseded": 1
+  },
+  "issue_counts": {
+    "invalid_doses": 1,
+    "later_valid_submission": 1,
+    "unknown_facility": 1
+  }
+}
