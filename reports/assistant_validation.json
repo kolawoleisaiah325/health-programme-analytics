@@ -1,0 +1,7 @@
+{
+  "generation_method": "local Ollama model llama3.2:latest with output validation",
+  "llm_failure_reason": null,
+  "schema_and_citation_validation": "passed",
+  "numeric_claims": "rendered only from source evidence",
+  "human_review_required": true
+}

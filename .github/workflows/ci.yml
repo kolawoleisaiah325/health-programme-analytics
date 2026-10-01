@@ -1,0 +1,38 @@
+name: Verify portfolio pipeline
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_DB: portfolio
+          POSTGRES_USER: portfolio
+          POSTGRES_PASSWORD: portfolio_ci_only
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U portfolio -d portfolio"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      PG_DSN: postgresql://portfolio:portfolio_ci_only@localhost:5432/portfolio
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install -r requirements.txt
+      - run: python src/generate_demo_data.py
+      - run: python src/validate_data.py
+      - run: python src/forecast_service_volume.py
+      - run: python src/report_assistant.py --offline
+      - run: python src/load_postgres.py
+      - run: python -m unittest discover -s tests -v

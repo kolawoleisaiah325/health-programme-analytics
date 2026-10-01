@@ -1,0 +1,13 @@
+period,predicted_doses,lower_illustrative,upper_illustrative,model,data_label
+2026-01,816,783,848,holt_winters,synthetic demonstration forecast
+2026-02,812,780,845,holt_winters,synthetic demonstration forecast
+2026-03,731,698,764,holt_winters,synthetic demonstration forecast
+2026-04,732,700,765,holt_winters,synthetic demonstration forecast
+2026-05,751,719,784,holt_winters,synthetic demonstration forecast
+2026-06,732,699,764,holt_winters,synthetic demonstration forecast
+2026-07,720,687,753,holt_winters,synthetic demonstration forecast
+2026-08,737,704,769,holt_winters,synthetic demonstration forecast
+2026-09,738,706,771,holt_winters,synthetic demonstration forecast
+2026-10,743,710,775,holt_winters,synthetic demonstration forecast
+2026-11,809,776,842,holt_winters,synthetic demonstration forecast
+2026-12,820,787,852,holt_winters,synthetic demonstration forecast

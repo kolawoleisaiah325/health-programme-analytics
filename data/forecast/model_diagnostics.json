@@ -1,0 +1,40 @@
+{
+  "data_label": "synthetic demonstration forecast",
+  "target": "doses delivered (service volume), not latent demand",
+  "training_period": "2023-01 through 2024-12",
+  "holdout_period": "2025-01 through 2025-12",
+  "scored_holdout_months": [
+    "2025-01",
+    "2025-03",
+    "2025-05",
+    "2025-07",
+    "2025-08",
+    "2025-09",
+    "2025-10",
+    "2025-11",
+    "2025-12"
+  ],
+  "excluded_incomplete_holdout_months": [
+    "2025-02",
+    "2025-04",
+    "2025-06"
+  ],
+  "imputed_facility_months_for_refit": 3,
+  "candidate_scores": {
+    "seasonal_naive": {
+      "mae": 31.78,
+      "wape_percent": 4.19
+    },
+    "ridge_trend_seasonal": {
+      "mae": 33.89,
+      "wape_percent": 4.47
+    },
+    "holt_winters": {
+      "mae": 27.38,
+      "wape_percent": 3.61
+    }
+  },
+  "selected_model": "holt_winters",
+  "illustrative_error_band_doses": 32.63,
+  "limitations": "Only nine complete synthetic holdout months are scored. The same holdout selected the model, so its reported error may be optimistic. Independent future validation is still needed. The band is a descriptive error range, not a calibrated prediction interval. Missing 2025 facility values are filled from 2024 for the final fit. Delivered doses may understate true demand."
+}

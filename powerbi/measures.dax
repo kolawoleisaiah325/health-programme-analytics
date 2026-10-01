@@ -1,0 +1,51 @@
+-- Create each measure separately in the FacilityMonth table.
+
+Expected Facility-Months = COUNTROWS(FacilityMonth)
+
+Submitted Facility-Months =
+    CALCULATE(
+        COUNTROWS(FacilityMonth),
+        FacilityMonth[submission_count] > 0
+    )
+
+Reporting Completeness =
+    DIVIDE([Submitted Facility-Months], [Expected Facility-Months])
+
+Accepted Facility-Months =
+    CALCULATE(
+        COUNTROWS(FacilityMonth),
+        FacilityMonth[reporting_status] = "accepted"
+    )
+
+Missing Facility-Months =
+    CALCULATE(
+        COUNTROWS(FacilityMonth),
+        FacilityMonth[reporting_status] = "missing"
+    )
+
+Invalid Facility-Months =
+    CALCULATE(
+        COUNTROWS(FacilityMonth),
+        FacilityMonth[reporting_status] = "invalid"
+    )
+
+Delivered Doses = SUM(FacilityMonth[accepted_doses])
+
+Comparable Target Doses =
+    CALCULATE(
+        SUM(FacilityMonth[target_doses]),
+        FacilityMonth[reporting_status] = "accepted"
+    )
+
+Target Attainment =
+    DIVIDE([Delivered Doses], [Comparable Target Doses])
+
+Low Performance Facility-Months =
+    COUNTROWS(
+        FILTER(
+            FacilityMonth,
+            FacilityMonth[reporting_status] = "accepted"
+                && FacilityMonth[accepted_doses]
+                    < FacilityMonth[target_doses] * 0.8
+        )
+    )
