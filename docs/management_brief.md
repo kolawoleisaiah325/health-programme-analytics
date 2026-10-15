@@ -18,12 +18,13 @@ below-threshold months with facility teams to understand context before
 inferring a cause. Keep the original submissions and correction history in
 the audit table. Refresh the dashboard after corrections.
 
-A 2026 service-volume forecast was backtested against nine complete months
-in 2025. Holt-Winters had the lowest observed MAE (27.38 doses), compared
-with 31.78 for the seasonal naïve baseline. This small synthetic test does
-not validate procurement decisions. Missing data were imputed for the final
-fit, the holdout was also used to choose the model, and delivered doses are
-not the same as underlying demand.
+A 2026 service-volume forecast was backtested with 30 rolling forecasts
+across nine complete months in 2025. The simplest method, repeating the
+same month last year, had the lowest error (MAE 41.40 doses); Holt-Winters
+was close behind at 42.30. This small synthetic test does not validate
+procurement decisions. Missing data were imputed for fitting, the backtest
+was also used to choose the model, and delivered doses are not the same as
+underlying demand.
 
 **What the manager should ask next:** Do source records confirm the missing
 and corrected submissions? Are target definitions comparable across

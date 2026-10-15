@@ -38,7 +38,7 @@ The dashboard metrics are:
 - **Acceptance rate:** facility-months with an accepted submission / expected facility-months.
 - **Delivered doses:** sum of accepted doses. This total is incomplete when reporting is incomplete.
 - **Comparable target attainment:** accepted doses / targets for accepted facility-months only.
-- **Follow-up threshold:** accepted doses below 80% of the target. This is a demonstration rule, not a clinical standard.
+- **Follow-up threshold:** accepted doses below 80% of the target. This is a demonstration rule, not a clinical standard. It is set once in `programme_rules.json`; tests check the SQL and DAX copies against it.
 
 The time-series target is monthly **delivered doses**, a service-volume
 measure. A stockout can suppress recorded delivery and make it a poor proxy

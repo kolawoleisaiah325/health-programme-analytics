@@ -10,7 +10,7 @@ Generation method: local Ollama model llama3.2:latest with output validation.
 - **E2:** Accepted: 213; missing: 2; invalid: 1. Source: `data/processed/quality_summary.json`.
 - **E3:** Unresolved facility-months: F003 2025-02: missing; F005 2025-06: invalid; F006 2025-04: missing. Source: `data/processed/facility_month_status.csv`.
 - **E4:** 5 accepted facility-months in 2025 were below 80% of their dose target. Source: `data/processed/facility_month_status.csv`.
-- **E5:** Forecast method: holt_winters; holdout MAE: 27.38 doses across 9 complete synthetic months. Source: `data/forecast/model_diagnostics.json`.
+- **E5:** Forecast method: seasonal_naive; rolling backtest MAE: 41.4 doses across 30 forecasts of 9 complete synthetic months. Source: `data/forecast/model_diagnostics.json`.
 
 ## Interpretation
 

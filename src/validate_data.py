@@ -27,7 +27,7 @@ def read_csv(path, required_columns):
 
 def write_csv(path, rows, columns):
     with path.open("w", newline="", encoding="utf-8") as output:
-        writer = csv.DictWriter(output, fieldnames=columns)
+        writer = csv.DictWriter(output, fieldnames=columns, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 
@@ -227,7 +227,9 @@ def run_pipeline(input_dir=DEFAULT_INPUT, output_dir=DEFAULT_OUTPUT):
             "reported_at", "review_status", "issue_code",
         ),
     )
-    with (output_dir / "quality_summary.json").open("w", encoding="utf-8") as output:
+    with (output_dir / "quality_summary.json").open(
+        "w", encoding="utf-8", newline="\n"
+    ) as output:
         json.dump(summary, output, indent=2)
         output.write("\n")
     return summary

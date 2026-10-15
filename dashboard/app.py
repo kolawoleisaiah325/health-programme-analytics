@@ -4,14 +4,23 @@ Processed records supply every number; presentation never changes source data.
 """
 
 import json
+import sys
 from pathlib import Path
 
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
+# Streamlit and its test harness run this file as a script, not a package.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from metrics import (  # noqa: E402
+    export_csv, facility_performance, followup_items, headline_metrics, monthly_totals,
+)
+
 
 ROOT = Path(__file__).resolve().parents[1]
+RULES = json.loads((ROOT / "programme_rules.json").read_text(encoding="utf-8"))
+THRESHOLD = RULES["follow_up_threshold"]
 TEAL = "#087F8C"
 NAVY = "#294E68"
 AMBER = "#B27A20"
@@ -62,28 +71,6 @@ def show_chart(figure):
                     config={"displayModeBar": False, "scrollZoom": False})
 
 
-def monthly_totals(frame):
-    """Only accepted rows contribute doses and comparable targets."""
-    accepted = frame["reporting_status"].eq("accepted")
-    prepared = frame.assign(
-        comparable_target=frame["target_doses"].where(accepted),
-        accepted=accepted.astype(int),
-        submitted=frame["submission_count"].gt(0).astype(int),
-    )
-    # min_count=1 preserves an unknown total when no valid reports exist.
-    return prepared.groupby("period", as_index=False).agg(
-        delivered=("accepted_doses", lambda values: values.sum(min_count=1)),
-        target=("comparable_target", lambda values: values.sum(min_count=1)),
-        accepted=("accepted", "sum"), submitted=("submitted", "sum"),
-        expected=("facility_id", "count"),
-    )
-
-
-def export_csv(frame):
-    """Carry the synthetic label into downloads as well as the on-screen view."""
-    return frame.assign(data_label="synthetic demonstration data").to_csv(index=False).encode("utf-8")
-
-
 try:
     paths = [ROOT / relative for relative in (
         "data/processed/facility_month_status.csv", "data/forecast/service_volume_forecast.csv",
@@ -120,7 +107,8 @@ with st.sidebar:
         "Reporting period", options=periods, value=(periods[0], periods[-1]), key="period")
     st.button("Reset filters", on_click=reset_filters, width="stretch")
     st.markdown('<div class="sidebar-note"><strong>About this workspace</strong><br>'
-                'Six fictional facilities, January 2023–December 2025.<br><br>'
+                f'{all_months["facility_id"].nunique()} fictional facilities, '
+                f'{pd.Period(periods[0]).strftime("%B %Y")}–{pd.Period(periods[-1]).strftime("%B %Y")}.<br><br>'
                 'Use the tabs to review performance, resolve data gaps and explore the forecast.'
                 '</div>', unsafe_allow_html=True)
 
@@ -147,23 +135,16 @@ if filtered.empty:
     st.info("Select at least one area and a reporting period to see results.")
     st.stop()
 
-accepted = filtered["reporting_status"].eq("accepted")
-expected_count = len(filtered)
-submitted_count = int(filtered["submission_count"].gt(0).sum())
-accepted_count = int(accepted.sum())
-delivered = int(filtered.loc[accepted, "accepted_doses"].sum())
-comparable_target = int(filtered.loc[accepted, "target_doses"].sum())
-missing_count = int(filtered["reporting_status"].eq("missing").sum())
-invalid_count = int(filtered["reporting_status"].eq("invalid").sum())
-low_volume = accepted & (filtered["accepted_doses"] < .8 * filtered["target_doses"])
-low_count = int(low_volume.sum())
-followup = filtered[~accepted | low_volume].copy()
-followup["action"] = followup["reporting_status"].map({
-    "missing": "Request report", "invalid": "Resolve rejected submission",
-    "accepted": "Discuss low service volume",
-})
-followup["priority"] = followup["reporting_status"].map({"missing": 0, "invalid": 0, "accepted": 1})
-followup = followup.sort_values(["priority", "period", "facility_id"], ascending=[True, False, True])
+counts = headline_metrics(filtered, THRESHOLD)
+expected_count = counts["expected"]
+submitted_count = counts["submitted"]
+accepted_count = counts["accepted"]
+delivered = counts["delivered"]
+comparable_target = counts["comparable_target"]
+missing_count = counts["missing"]
+invalid_count = counts["invalid"]
+low_count = counts["below_threshold"]
+followup = followup_items(filtered, THRESHOLD)
 
 metrics = st.columns(4)
 metrics[0].metric("Reporting completeness", f"{submitted_count / expected_count:.1%}",
@@ -209,25 +190,18 @@ with overview_tab:
         for count, title, detail, color in (
             (missing_count, "Missing reports", "Request the outstanding submissions", "amber"),
             (invalid_count, "Invalid reports", "Resolve rejected source records", "rose"),
-            (low_count, "Below target", "Review service volume below 80%", ""),
+            (low_count, "Below target", f"Review service volume below {THRESHOLD:.0%}", ""),
         ):
             st.markdown(f'<div class="priority-row"><div class="priority-number {color}">{count}</div>'
                         f'<div><div class="priority-text">{title}</div>'
                         f'<div class="priority-detail">{detail}</div></div></div>', unsafe_allow_html=True)
-        st.caption("Open Follow-up for the facility list. The 80% threshold is a demonstration review rule.")
+        st.caption(f"Open Follow-up for the facility list. The {THRESHOLD:.0%} threshold is a demonstration review rule.")
     with st.container(border=True, key="panel_facilities"):
         st.subheader("Facility performance")
         st.caption("Compare delivery with targets; read reporting quality alongside performance.")
-        facilities = filtered.assign(
-            comparable_target=filtered["target_doses"].where(accepted), accepted=accepted.astype(int)
-        ).groupby(["facility_name", "area"], as_index=False).agg(
-            delivered=("accepted_doses", lambda values: values.sum(min_count=1)),
-            target=("comparable_target", lambda values: values.sum(min_count=1)),
-            accepted=("accepted", "sum"), expected=("period", "count"))
-        facilities["attainment"] = 100 * facilities["delivered"] / facilities["target"].replace(0, float("nan"))
-        facilities["reporting"] = facilities["accepted"].astype(str) + " / " + facilities["expected"].astype(str)
+        facilities = facility_performance(filtered)
         max_attainment = facilities["attainment"].max()
-        st.dataframe(facilities.sort_values("attainment")[[
+        st.dataframe(facilities[[
             "facility_name", "area", "delivered", "attainment", "reporting"]],
             hide_index=True, width="stretch", column_config={
                 "facility_name": "Facility", "area": "Area",
@@ -288,16 +262,17 @@ with quality_tab:
                      hide_index=True, width="stretch")
 
 with forecast_tab:
-    st.markdown('<div class="scope-note"><strong>Programme-wide forecast</strong> · All six facilities. '
+    st.markdown('<div class="scope-note"><strong>Programme-wide forecast</strong> · '
+                f'All {all_months["facility_id"].nunique()} facilities. '
                 'Area and reporting-period filters do not change this model.</div>', unsafe_allow_html=True)
     forecast_column, model_column = st.columns([2.1, 1], gap="large")
     selected = diagnostics["selected_model"]
     score = diagnostics["candidate_scores"][selected]
     with forecast_column, st.container(border=True, key="panel_forecast"):
         st.subheader("Planning the next 12 months")
-        st.caption("Recorded service volume and the synthetic 2026 outlook")
+        st.caption(f"Last 12 recorded months and the synthetic outlook to {forecast['period'].iloc[-1]}")
         history = monthly_totals(all_months)
-        history = history[history["period"].str.startswith("2025")].copy()
+        history = history.tail(12).copy()
         history.loc[history["accepted"] < history["expected"], "delivered"] = float("nan")
         chart = go.Figure()
         chart.add_trace(go.Scatter(x=history["period"], y=history["delivered"], name="Complete observed months",
@@ -312,14 +287,16 @@ with forecast_tab:
         chart_style(chart, 350)
         chart.update_yaxes(title_text="Doses delivered")
         show_chart(chart)
-        st.caption("Gaps in 2025 mark incomplete reporting. The shaded range is illustrative, not a calibrated prediction interval.")
+        st.caption("Gaps in the recorded line mark incomplete reporting. The shaded range is illustrative, not a calibrated prediction interval.")
     with model_column, st.container(border=True, key="panel_model"):
         st.subheader("Model evidence")
         st.caption("Selected method")
         st.markdown(f"**{MODEL_NAMES[selected]}**")
         st.metric("Average absolute error", f"{score['mae']:.2f} doses")
         st.caption(f"{score['wape_percent']:.2f}% weighted absolute percentage error · "
-                   f"{len(diagnostics['scored_holdout_months'])} complete holdout months")
+                   f"rolling backtest of {diagnostics['scored_forecasts']} forecasts, up to "
+                   f"{diagnostics['backtest_horizon_months']} months ahead, across "
+                   f"{len(diagnostics['scored_holdout_months'])} complete months")
         comparisons = pd.DataFrame([
             {"Method": MODEL_NAMES[name], "MAE (doses)": values["mae"]}
             for name, values in diagnostics["candidate_scores"].items()
