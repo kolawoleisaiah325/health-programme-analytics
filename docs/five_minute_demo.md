@@ -19,9 +19,10 @@ attainment. Filter to an area and display the follow-up table. If asked
 about Power BI, show the M queries, DAX measures, and model relationship
 specification; state that Desktop authoring remains unverified.
 
-**3:00–3:45 — Forecast.** Show the seasonal naïve baseline, time split, three
-incomplete holdout months, and Holt-Winters result. Explain why the error
-band is illustrative and why delivered doses do not prove demand.
+**3:00–3:45 — Forecast.** Show the rolling-origin backtest, the three
+incomplete months it excludes, and that the seasonal naïve baseline narrowly
+beat Holt-Winters, so the simpler method is used. Explain why the error band
+is illustrative and why delivered doses do not prove demand.
 
 **3:45–4:30 — AI review.** Open the brief and its validation JSON. Show that
 the model supplies cited qualitative prose while Python inserts exact

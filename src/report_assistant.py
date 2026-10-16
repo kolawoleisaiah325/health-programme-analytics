@@ -4,13 +4,25 @@ import argparse
 import csv
 import json
 import re
+from http.client import HTTPException
 from pathlib import Path
-from urllib.error import URLError
 from urllib.request import Request, urlopen
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 OUTPUT_DIR = PROJECT_ROOT / "reports"
+RULES = json.loads((PROJECT_ROOT / "programme_rules.json").read_text(encoding="utf-8"))
+FOLLOW_UP_THRESHOLD = RULES["follow_up_threshold"]
+
+# Spelled-out quantities are numbers too; the model must not state them.
+NUMBER_WORDS = re.compile(
+    r"\b(zero|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|"
+    r"thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|"
+    r"thirty|forty|fifty|sixty|seventy|eighty|ninety|hundreds?|thousands?|"
+    r"millions?|dozens?|half|halves|quarters?|thirds?|twice|double|triple|"
+    r"percent|per cent|percentage)\b",
+    re.I,
+)
 
 
 def evidence_pack():
@@ -32,7 +44,7 @@ def evidence_pack():
         r for r in months
         if r["period"].startswith("2025-")
         and r["reporting_status"] == "accepted"
-        and int(r["accepted_doses"]) < 0.8 * int(r["target_doses"])
+        and int(r["accepted_doses"]) < FOLLOW_UP_THRESHOLD * int(r["target_doses"])
     ]
     return {
         "E1": {
@@ -52,23 +64,23 @@ def evidence_pack():
             "source": "data/processed/quality_summary.json",
         },
         "E3": {
-            "fact": "Unresolved facility-months: " + "; ".join(incomplete) + ".",
+            "fact": "Unresolved facility-months: " + ("; ".join(incomplete) or "none") + ".",
             "source": "data/processed/facility_month_status.csv",
         },
         "E4": {
             "fact": (
                 f"{len(low_performance)} accepted facility-months in 2025 "
-                "were below 80% of their dose target."
+                f"were below {FOLLOW_UP_THRESHOLD:.0%} of their dose target."
             ),
             "source": "data/processed/facility_month_status.csv",
         },
         "E5": {
             "fact": (
                 f"Forecast method: {diagnostics['selected_model']}; "
-                f"holdout MAE: "
+                f"rolling backtest MAE: "
                 f"{diagnostics['candidate_scores'][diagnostics['selected_model']]['mae']} "
-                f"doses across {len(diagnostics['scored_holdout_months'])} "
-                "complete synthetic months."
+                f"doses across {diagnostics['scored_forecasts']} forecasts of "
+                f"{len(diagnostics['scored_holdout_months'])} complete synthetic months."
             ),
             "source": "data/forecast/model_diagnostics.json",
         },
@@ -115,7 +127,7 @@ def validate_draft(draft, evidence):
     for text, citations in items:
         if not isinstance(text, str) or not 1 <= len(text.strip()) <= 300:
             raise ValueError("Draft text is empty or too long")
-        if re.search(r"\d", text):
+        if re.search(r"\d", text) or NUMBER_WORDS.search(text):
             raise ValueError("LLM may not invent or restate numbers")
         if re.search(r"\b(caused by|proves|guarantees|will prevent)\b", text, re.I):
             raise ValueError("Draft makes an unsupported causal or outcome claim")
@@ -233,13 +245,15 @@ def build_report(model="llama3.2:latest", endpoint="http://localhost:11434", off
         try:
             draft = validate_draft(local_llm_draft(evidence, model, endpoint), evidence)
             method = f"local Ollama model {model} with output validation"
-        except (URLError, TimeoutError, ValueError, KeyError, TypeError) as error:
+        # OSError covers URLError, refused connections and timeouts;
+        # HTTPException covers a connection dropped mid-response.
+        except (OSError, HTTPException, ValueError, KeyError, TypeError) as error:
             failure_reason = f"{type(error).__name__}: {error}"
             draft = safe_fallback()
     validate_draft(draft, evidence)
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     (OUTPUT_DIR / "programme_brief.md").write_text(
-        render_markdown(draft, evidence, method), encoding="utf-8"
+        render_markdown(draft, evidence, method), encoding="utf-8", newline="\n"
     )
     validation = {
         "generation_method": method,
@@ -249,7 +263,7 @@ def build_report(model="llama3.2:latest", endpoint="http://localhost:11434", off
         "human_review_required": True,
     }
     (OUTPUT_DIR / "assistant_validation.json").write_text(
-        json.dumps(validation, indent=2) + "\n", encoding="utf-8"
+        json.dumps(validation, indent=2) + "\n", encoding="utf-8", newline="\n"
     )
     return validation
 

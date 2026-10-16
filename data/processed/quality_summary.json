@@ -9,12 +9,17 @@
   },
   "submission_review_counts": {
     "accepted": 213,
-    "rejected": 2,
+    "rejected": 7,
     "superseded": 1
   },
   "issue_counts": {
+    "bad_period": 1,
+    "bad_reported_at": 1,
+    "duplicate_or_blank_report_id": 1,
     "invalid_doses": 1,
     "later_valid_submission": 1,
+    "period_without_target": 1,
+    "report_before_period_end": 1,
     "unknown_facility": 1
   }
 }

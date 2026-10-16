@@ -1,0 +1,4 @@
+{
+  "description": "Shared demonstration review rules. sql/ and powerbi/ repeat the threshold; tests/test_consistency.py checks that every copy matches.",
+  "follow_up_threshold": 0.8
+}

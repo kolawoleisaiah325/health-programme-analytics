@@ -41,7 +41,9 @@ CREATE TABLE IF NOT EXISTS portfolio_health.report_review (
     issue_code TEXT
 );
 
-CREATE INDEX IF NOT EXISTS facility_month_area_date_idx
+-- Replaces an earlier, misleadingly named index on the same columns.
+DROP INDEX IF EXISTS portfolio_health.facility_month_area_date_idx;
+CREATE INDEX IF NOT EXISTS facility_month_date_status_idx
     ON portfolio_health.facility_month(month_start, reporting_status);
 
 CREATE OR REPLACE VIEW portfolio_health.v_monthly_performance AS

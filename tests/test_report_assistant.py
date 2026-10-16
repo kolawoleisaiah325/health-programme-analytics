@@ -16,6 +16,17 @@ class ReportAssistantTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "numbers"):
             validate_draft(draft, evidence_pack())
 
+    def test_spelled_out_number_is_rejected(self):
+        for text in (
+            "Two facilities have missing reports.",
+            "About half of the reports need review.",
+            "Ninety percent of months were accepted.",
+        ):
+            draft = safe_fallback()
+            draft["actions"][0]["text"] = text
+            with self.subTest(text=text), self.assertRaisesRegex(ValueError, "numbers"):
+                validate_draft(draft, evidence_pack())
+
     def test_unknown_evidence_id_is_rejected(self):
         draft = safe_fallback()
         draft["actions"][0]["evidence_ids"] = ["E999"]

@@ -1,13 +1,13 @@
 period,predicted_doses,lower_illustrative,upper_illustrative,model,data_label
-2026-01,816,783,848,holt_winters,synthetic demonstration forecast
-2026-02,812,780,845,holt_winters,synthetic demonstration forecast
-2026-03,731,698,764,holt_winters,synthetic demonstration forecast
-2026-04,732,700,765,holt_winters,synthetic demonstration forecast
-2026-05,751,719,784,holt_winters,synthetic demonstration forecast
-2026-06,732,699,764,holt_winters,synthetic demonstration forecast
-2026-07,720,687,753,holt_winters,synthetic demonstration forecast
-2026-08,737,704,769,holt_winters,synthetic demonstration forecast
-2026-09,738,706,771,holt_winters,synthetic demonstration forecast
-2026-10,743,710,775,holt_winters,synthetic demonstration forecast
-2026-11,809,776,842,holt_winters,synthetic demonstration forecast
-2026-12,820,787,852,holt_winters,synthetic demonstration forecast
+2026-01,881,811,951,seasonal_naive,synthetic demonstration forecast
+2026-02,879,809,949,seasonal_naive,synthetic demonstration forecast
+2026-03,816,746,886,seasonal_naive,synthetic demonstration forecast
+2026-04,822,752,892,seasonal_naive,synthetic demonstration forecast
+2026-05,843,773,913,seasonal_naive,synthetic demonstration forecast
+2026-06,819,749,889,seasonal_naive,synthetic demonstration forecast
+2026-07,713,643,783,seasonal_naive,synthetic demonstration forecast
+2026-08,819,749,889,seasonal_naive,synthetic demonstration forecast
+2026-09,798,728,868,seasonal_naive,synthetic demonstration forecast
+2026-10,804,734,874,seasonal_naive,synthetic demonstration forecast
+2026-11,859,789,929,seasonal_naive,synthetic demonstration forecast
+2026-12,896,826,966,seasonal_naive,synthetic demonstration forecast

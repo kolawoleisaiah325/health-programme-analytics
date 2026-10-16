@@ -65,16 +65,21 @@ WHO/UNICEF estimates; those estimates are not monthly facility delivery records.
 
 The source data has six fictional facilities and 36 months, creating 216
 expected facility-months. Intentional quality cases include two missing
-reports, one submitted zero, one negative count, a later resubmission, and
-an unknown facility. The processed fact table contains 213 accepted, two
-missing, and one invalid facility-month. The raw review log retains every
-submission and its decision.
+reports, one submitted zero, a later resubmission, and one rejected
+submission for each validation rule: unknown facility, negative count,
+repeated report ID, impossible month, month without a target, unreadable
+date, and a report dated before its month ended. The processed fact table
+contains 213 accepted, two missing, and one invalid facility-month. The raw
+review log retains all 221 submissions and their decisions.
 
 The forecast models **delivered doses**, not unique vaccinated children,
-coverage, true vaccine demand, or health outcomes. It trains on 2023–2024
-and compares methods on complete months in 2025. Forecast bands are
-illustrative, and the small synthetic holdout does not demonstrate real
-programme impact.
+coverage, true vaccine demand, or health outcomes. A rolling-origin
+backtest refits each method monthly through 2025 and scores only complete
+months. Forecast bands are illustrative, and the small synthetic backtest
+does not demonstrate real programme impact.
+
+The 80% follow-up threshold lives in `programme_rules.json`. The SQL and
+DAX copies are checked against it by `tests/test_consistency.py`.
 
 ## Learn and present the work
 

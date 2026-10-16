@@ -21,6 +21,17 @@ __pycache__/
 *.dump
 *.backup
 
+# Separate portfolio projects that live in this folder but are not part of
+# this repository (inspect-ai alone holds a 47 MB checkpoint and its images).
+/portfolio/
+/inspect-ai/
+/github-code-chat/
+/inspect-ai-publish.py
+/prepare-inspectai-portfolio.py
+/simplify-portfolio-copy.py
+/verify-inspectai-live.py
+/*.jpg
+
 # Windows metadata
 Thumbs.db
 Desktop.ini

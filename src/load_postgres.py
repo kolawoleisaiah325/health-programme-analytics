@@ -31,9 +31,9 @@ def load_database(dsn):
     # them back. The replacement touches only the portfolio_health schema.
     with psycopg.connect(dsn, connect_timeout=5) as connection:
         with connection.cursor() as cursor:
-            for statement in schema_sql.split(";"):
-                if statement.strip():
-                    cursor.execute(statement)
+            # Without parameters, psycopg sends the whole script at once, so
+            # semicolons inside functions or strings stay intact.
+            cursor.execute(schema_sql)
             cursor.execute(
                 "TRUNCATE portfolio_health.report_review, "
                 "portfolio_health.facility_month, portfolio_health.facility"
@@ -90,9 +90,13 @@ def load_database(dsn):
                 "FROM portfolio_health.facility_month"
             )
             expected, accepted = cursor.fetchone()
-            if (expected, accepted) != (len(months), sum(
-                r["reporting_status"] == "accepted" for r in months
-            )):
+            cursor.execute("SELECT COUNT(*) FROM portfolio_health.report_review")
+            reviewed = cursor.fetchone()[0]
+            if (expected, accepted, reviewed) != (
+                len(months),
+                sum(r["reporting_status"] == "accepted" for r in months),
+                len(reviews),
+            ):
                 raise ValueError("Database row counts differ from validated input")
     return {"facilities": len(facilities), "facility_months": expected,
             "accepted_facility_months": accepted, "reviewed_submissions": len(reviews)}

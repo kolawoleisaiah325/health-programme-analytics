@@ -1,0 +1,4 @@
+# Pipeline outputs are written with LF on every platform, so CI can check
+# that regenerating them leaves the committed files unchanged.
+data/** text eol=lf
+reports/** text eol=lf

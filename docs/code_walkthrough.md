@@ -14,9 +14,13 @@ root. This makes the script work regardless of the terminal's current folder.
 `rng = random.Random(42)` creates a private random number generator with a
 fixed seed. Every run draws the same sequence, so the CSV and JSON files are
 reproducible. The generator loops over six fictional facilities and 36 months.
-It writes one target per facility-month, then writes the submitted reports.
-It deliberately skips two reports and inserts several quality problems. The
-different source formats simulate a partner-data integration task.
+Each month's doses combine facility size, a gentle upward trend, winter
+seasonality and random noise. It writes one target per facility-month, then
+writes the submitted reports. Two tables at the top of the file list every
+deliberate problem: `REPORT_OVERRIDES` skips two reports, plants a valid zero,
+a negative count and a few low months, and `EXTRA_SUBMISSIONS` adds one row
+for each validation rule. The different source formats simulate a
+partner-data integration task.
 
 ## 2. Validate without losing the audit trail
 
@@ -69,25 +73,32 @@ review priority.
 
 ## 4. Forecast without using future information in training
 
-The forecast trains on 2023–2024 and evaluates on 2025. It compares three
-methods: last year's same month (seasonal naïve), ridge regression with a
-time trend and annual sine/cosine features, and Holt-Winters seasonal
-smoothing. Each method predicts 2025 without seeing 2025 outcomes during
-fit. Model error is measured only for the nine 2025 months where all six
-facilities have accepted reports. A partial month's observed total would
-understate service volume and unfairly penalize forecasts.
+The forecast compares three methods: last year's same month (seasonal
+naïve), ridge regression with a time trend and annual sine/cosine features,
+and Holt-Winters seasonal smoothing. `rolling_backtest()` uses a
+**rolling origin**: it pretends to stand at each month from January to July
+2025, fits every method on only the months before that point, and forecasts
+the next six months. `fit_series[:origin]` is the line that prevents time
+leakage. A unit test records each fit's history length to prove it.
+
+Errors are measured only for 2025 months where all six facilities have
+accepted reports. A partial month's observed total would understate service
+volume and unfairly penalize forecasts. Rolling the origin turns one small
+holdout into 30 scored forecasts, so the comparison rests on more evidence.
 
 MAE is the average absolute difference between predicted and observed dose
 counts. WAPE is the total absolute error divided by total observed doses.
-The chosen method has the smallest holdout MAE. The same holdout selected
-and assessed the model, so this error estimate may be optimistic; an
-independent future period would provide a stronger assessment.
+The chosen method has the smallest backtest MAE. Here the seasonal naïve
+baseline narrowly wins, a useful reminder that a complex model must beat a
+simple one before it is used. The same backtest selected and assessed the
+model, so this error estimate may be optimistic; an independent future
+period would provide a stronger assessment.
 
-For the final 2026 fit, three incomplete 2025 facility-months borrow that
-facility's value from the same month in 2024. This is labelled as an
-assumption and is never treated as observed truth in the holdout score.
-The forecast's shaded range uses an empirical holdout error size; it is
-not a calibrated probability interval. Delivered doses are not latent
+When a fit needs a month with a missing or invalid facility report, that
+facility's value from the same month in the prior year is borrowed. This is
+labelled as an assumption and is never treated as observed truth in the
+score. The forecast's shaded range uses an empirical backtest error size;
+it is not a calibrated probability interval. Delivered doses are not latent
 commodity demand.
 
 ## 5. Turn data into a management dashboard
@@ -134,7 +145,8 @@ Power BI report.
 earlier stages. It sends a short, qualitative version to the local Ollama
 model. The model returns JSON with a summary, actions, and evidence IDs.
 `validate_draft` rejects missing citations, unknown evidence IDs, numeric
-claims in model prose, and several unsupported causal phrases. Exact
+claims in model prose (digits and words such as "two" or "half"), and
+several unsupported causal phrases. Exact
 numbers are rendered from the source files by Python, not composed by the
 model. If the model is unavailable or fails validation, deterministic
 language is used and the failure is recorded. The output remains a draft
@@ -142,11 +154,16 @@ for human review; the validator cannot prove every sentence is correct.
 
 ## 7. Repeat the work and inspect failures
 
-The scripts and dependencies are versioned. Unit tests check missing versus
-zero, resubmission selection, duplicate targets, forecast split, dashboard
-rendering, and LLM output rules. GitHub Actions additionally loads a real
-temporary PostgreSQL database and queries its views. A failed check stops
-the pipeline from being represented as verified.
+The scripts and dependencies are versioned. Unit tests check every
+validation rule, missing versus zero, resubmission selection, duplicate
+targets, the forecast's time split, dashboard rendering, and LLM output
+rules. `tests/test_consistency.py` checks that the 80% threshold in
+`programme_rules.json` matches the copies in SQL and DAX, and that the
+figures quoted in the evaluation report and management brief match the
+pipeline outputs. GitHub Actions additionally loads a real temporary
+PostgreSQL database, queries its views, and fails if regenerating the data
+changes the committed files. A failed check stops the pipeline from being
+represented as verified.
 
 To practise for an interview, explain **the decision each stage protects**:
 the validator protects report credibility, the SQL model protects metric

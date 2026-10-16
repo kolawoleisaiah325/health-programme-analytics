@@ -16,7 +16,12 @@ class PostgreSQLIntegrationTest(unittest.TestCase):
                 cursor.execute("SELECT COUNT(*) FROM portfolio_health.facility_month")
                 self.assertEqual(cursor.fetchone()[0], 216)
                 cursor.execute("SELECT COUNT(*) FROM portfolio_health.report_review")
-                self.assertEqual(cursor.fetchone()[0], 216)
+                self.assertEqual(cursor.fetchone()[0], 221)
+                cursor.execute(
+                    "SELECT COUNT(*) FROM portfolio_health.report_review "
+                    "WHERE review_status = 'rejected'"
+                )
+                self.assertEqual(cursor.fetchone()[0], 7)
                 cursor.execute(
                     "SELECT SUM(missing_facility_months), "
                     "SUM(invalid_facility_months), SUM(accepted_facility_months) "
